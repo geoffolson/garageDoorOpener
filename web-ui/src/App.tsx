@@ -3,6 +3,8 @@ import "./App.css";
 import { Button } from "./Button";
 import { ErrorAlert } from "./Error";
 
+const baseUrl = import.meta.env.PROD ? "/" : "/api/";
+
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<{
@@ -23,7 +25,7 @@ function App() {
           onClick={() => {
             setIsLoading(true);
             setError(null);
-            fetch("/", { method: "POST" })
+            fetch(baseUrl, { method: "POST" })
               .then((res) => {
                 if (res.status !== 200) {
                   setError({
