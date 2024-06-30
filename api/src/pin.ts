@@ -6,6 +6,7 @@ const relay: Relay = (() => {
   try {
     return new Gpio(17, { mode: Gpio.OUTPUT });
   } catch (e) {
+    console.log(e);
     // fallback to mock relay pin for local testing/development
     return {
       digitalWrite(state: PinState) {
@@ -39,7 +40,7 @@ class Pin {
   async press() {
     if (this.pinState === PinState.On) return;
     this.write(PinState.On);
-    await delay(2000);
+    await delay(500);
     this.write(PinState.Off);
   }
 }
