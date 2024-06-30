@@ -4,8 +4,8 @@
   "description": "service for activating a garage door remotely",
   "main": "index.js",
   "scripts": {
-    "start:dev": "ts-node src/index.ts",
-    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "start": "NODE_ENV=production node dist/index.js",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

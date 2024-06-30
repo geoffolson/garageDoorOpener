@@ -3,7 +3,7 @@ import { pin } from "./pin";
 import path from "path";
 
 const app = express();
-const port = 3000;
+const port = process.env.NODE_ENV === "production" ? 80 : 3000
 
 app.use(express.static(path.resolve(__dirname, "../../web-ui/dist")));
 
