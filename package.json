@@ -7,11 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build --workspaces",
     "lc": "npx cloc --include-lang=Typescript --exclude-dir=node_modules .",
-    "check-formatting": "prettier . --check"
+    "check-formatting": "prettier . --check",
+    "format-write": "prettier . --write"
   },
   "author": "Geoffrey Olson Jr.",
   "license": "MIT",
-  "workspaces": ["api", "web-ui"],
+  "workspaces": [
+    "api",
+    "web-ui"
+  ],
   "devDependencies": {
     "prettier": "3.3.1"
   }
