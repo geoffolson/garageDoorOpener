@@ -1,23 +1,18 @@
 {
   "name": "garagedooropener",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "service for activating a garage door remotely",
   "main": "index.js",
   "scripts": {
-    "start:dev": "ts-node src/index.ts",
-    "start": "node dist/index.js",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build --workspaces",
+    "lc": "npx cloc --include-lang=Typescript --exclude-dir=node_modules .",
+    "check-formatting": "prettier . --check"
   },
-  "keywords": [],
   "author": "Geoffrey Olson Jr.",
   "license": "MIT",
-  "dependencies": {
-    "express": "^4.19.2"
-  },
+  "workspaces": ["api", "web-ui"],
   "devDependencies": {
-    "@types/express": "^4.17.21",
-    "@types/node": "^20.14.9",
-    "ts-node": "^10.9.2"
+    "prettier": "3.3.1"
   }
 }

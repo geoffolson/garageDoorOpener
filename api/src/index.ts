@@ -4,9 +4,9 @@ import { pin } from "./pin";
 const app = express();
 const port = 3000;
 
-app.get("/", async (req: Request, res: Response) => {
+app.post("/", async (req: Request, res: Response) => {
   await pin.press();
-  res.sendStatus(200);
+  res.send({});
 });
 
 app.listen(port, () => {

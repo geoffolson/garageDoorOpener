@@ -19,7 +19,7 @@ class Pin {
   async press() {
     if (this.pinState === PinState.On) return;
     this.write(PinState.On);
-    await delay(500);
+    await delay(2000);
     this.write(PinState.Off);
   }
 }

@@ -1,2 +1,3 @@
 # garageDoorOpener
-service for activating a garage door remotely
+
+Raspberry Pi service for activating a garage door remotely
