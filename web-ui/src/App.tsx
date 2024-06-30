@@ -23,7 +23,7 @@ function App() {
           onClick={() => {
             setIsLoading(true);
             setError(null);
-            fetch("/api/", { method: "POST" })
+            fetch("/", { method: "POST" })
               .then((res) => {
                 if (res.status !== 200) {
                   setError({

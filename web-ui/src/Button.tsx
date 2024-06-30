@@ -29,7 +29,7 @@ export const Button = ({
     <button
       //   style={{ width: "100px" }}
       className={classNames(
-        "border-gray-800 bg-gray-800 border-2 p-3 w-96 h-20",
+        "border-gray-800 bg-gray-800 border-2 p-3 w-64 h-20",
         {
           "bg-gray-600 text-gray-500": props.disabled || isLoading,
         },

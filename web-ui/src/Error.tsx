@@ -9,7 +9,7 @@ export const ErrorAlert = ({
 }) => {
   return (
     <div
-      className="m-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative h-12 w-96"
+      className="m-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative min-h-12 w-64"
       role="alert"
     >
       <strong className="font-bold">{code}</strong>
