@@ -7,7 +7,7 @@ if [ $? -eq 0 ]; then
     echo "node is already installed";
 else
     echo "installing node";
-    apt install node
+    apt install nodejs
 fi
 npm -v
 if [ $? -eq 0 ]; then
