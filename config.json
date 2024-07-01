@@ -1,3 +1,4 @@
 {
-  "outPin": 22
+  "outPin": 22,
+  "doorSwitchPin": 1
 }

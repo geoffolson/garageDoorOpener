@@ -9,6 +9,7 @@ const fileStr = readFileSync(path.resolve(__dirname, "../../config.json"), {
 const schema = z
   .object({
     outPin: z.number(),
+    doorSwitchPin: z.number().optional(),
   })
   .readonly();
 
