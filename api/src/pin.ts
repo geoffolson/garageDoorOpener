@@ -9,8 +9,7 @@ const relay: Relay = (() => {
     console.log(`GPIO pin ${config.outPin} set`);
     return gpio;
   } catch (e) {
-    console.log(e);
-    // fallback to mock relay pin for local testing/development
+    console.log("falling back to mock relay pin", e);
     return {
       digitalWrite(state: PinState) {
         console.log(state);
