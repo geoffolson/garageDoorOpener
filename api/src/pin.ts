@@ -5,7 +5,9 @@ type Relay = { digitalWrite: (state: PinState) => void };
 
 const relay: Relay = (() => {
   try {
-    return new Gpio(config.outPin, { mode: Gpio.OUTPUT });
+    const gpio = new Gpio(config.outPin, { mode: Gpio.OUTPUT });
+    console.log(`GPIO pin ${config.outPin} set`);
+    return gpio;
   } catch (e) {
     console.log(e);
     // fallback to mock relay pin for local testing/development
