@@ -1,10 +1,11 @@
 import { Gpio } from "pigpio";
+import { config } from "./loadConfig";
 
 type Relay = { digitalWrite: (state: PinState) => void };
 
 const relay: Relay = (() => {
   try {
-    return new Gpio(22, { mode: Gpio.OUTPUT });
+    return new Gpio(config.outPin, { mode: Gpio.OUTPUT });
   } catch (e) {
     console.log(e);
     // fallback to mock relay pin for local testing/development
