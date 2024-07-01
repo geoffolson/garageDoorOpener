@@ -10,9 +10,11 @@ const relay: Relay = (() => {
     return gpio;
   } catch (e) {
     console.log("falling back to mock relay pin", e);
+    const error = e;
     return {
       digitalWrite(state: PinState) {
         console.log(state);
+        console.log(error);
       },
     };
   }
