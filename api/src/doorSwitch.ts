@@ -15,8 +15,10 @@ class MockDoorSwitch extends EventEmitter {
 }
 
 const doorSwitchPin: EventEmitter = (() => {
-  if (config.doorSwitchEnabled || config.doorSwitchPin === undefined)
+  if (!config.doorSwitchEnabled || config.doorSwitchPin === undefined){
+    console.log("door switch disabled falling back to mock relay pin")
     return new MockDoorSwitch();
+  }
   try {
     const gpio = new Gpio(config.doorSwitchPin, {
       mode: Gpio.INPUT,
