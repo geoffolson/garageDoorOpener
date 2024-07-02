@@ -4,10 +4,9 @@ import { EventEmitter } from "events";
 
 class MockDoorSwitch extends EventEmitter {
   private switch = 0;
-  private interval;
   constructor() {
     super();
-    this.interval = setInterval(() => {
+    setInterval(() => {
       this.switch = this.switch === 0 ? 1 : 0;
       this.emit("alert", this.switch, 0);
     }, 5000);
@@ -15,9 +14,9 @@ class MockDoorSwitch extends EventEmitter {
 }
 
 const doorSwitchPin: EventEmitter = (() => {
-  if (!config.doorSwitchEnabled || config.doorSwitchPin === undefined){
-    console.log("door switch disabled falling back to mock relay pin")
-    return new MockDoorSwitch();
+  if (!config.doorSwitchEnabled || config.doorSwitchPin === undefined) {
+    console.log("door switch disabled");
+    return new EventEmitter();
   }
   try {
     const gpio = new Gpio(config.doorSwitchPin, {

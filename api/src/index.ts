@@ -29,9 +29,7 @@ wss.on("connection", (ws) => {
 });
 
 doorSwitch.on("alert", (door: 0 | 1) => {
-  const message = new Uint8Array(2);
-  message[0] = door;
-  message[1] = config.doorSwitchEnabled ? 1 : 0;
+  const message = new Uint8Array([door, config.doorSwitchEnabled ? 1 : 0]);
   connections.forEach((ws) => ws.send(message));
 });
 
