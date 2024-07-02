@@ -14,4 +14,21 @@ class MockDoorSwitch extends EventEmitter {
   }
 }
 
-export const doorSwitch = new MockDoorSwitch();
+const doorSwitchPin: EventEmitter = (() => {
+  if (config.doorSwitchEnabled || config.doorSwitchPin === undefined)
+    return new MockDoorSwitch();
+  try {
+    const gpio = new Gpio(config.doorSwitchPin, {
+      mode: Gpio.INPUT,
+      pullUpDown: Gpio.PUD_UP,
+      alert: true,
+    });
+    console.log(`GPIO pin ${config.doorSwitchPin} set to input`);
+    return gpio;
+  } catch (e) {
+    console.log("falling back to mock relay pin", e);
+    return new MockDoorSwitch();
+  }
+})();
+
+export const doorSwitch = doorSwitchPin;

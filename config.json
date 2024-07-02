@@ -1,5 +1,5 @@
 {
   "outPin": 22,
   "doorSwitchEnabled": true,
-  "doorSwitchPin": 1
+  "doorSwitchPin": 6
 }
