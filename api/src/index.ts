@@ -4,6 +4,7 @@ import path from "path";
 import { WebSocketServer, WebSocket } from "ws";
 import { createServer } from "http";
 import { doorSwitch } from "./doorSwitch";
+import { config } from "./loadConfig";
 
 const app = express();
 const port = process.env.NODE_ENV === "production" ? 80 : 3000;
@@ -28,7 +29,10 @@ wss.on("connection", (ws) => {
 });
 
 doorSwitch.on("alert", (door: 0 | 1) => {
-  connections.forEach((ws) => ws.send(door));
+  const message = new Uint8Array(2);
+  message[0] = door;
+  message[1] = config.doorSwitchEnabled ? 1 : 0;
+  connections.forEach((ws) => ws.send(message));
 });
 
 server.listen(port, () => {
