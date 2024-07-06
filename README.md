@@ -12,8 +12,5 @@ sudo bash install.sh
 
 ## Run
 
-Service will run on port 80 by default
+Service will run on port 80 by default after installation
 
-```
-sudo npm start
-```
