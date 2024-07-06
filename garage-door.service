@@ -1,0 +1,16 @@
+[Unit]
+Description=Garage door service
+Documentation=https://github.com/geoffolson/garageDoorOpener
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+Restart=on-failure
+WorkingDirectory=/home/geoff/garageDoorOpener
+ExecStartPre=/bin/sleep 5
+ExecStart=npm start
+
+[Install]
+WantedBy=multi-user.target
