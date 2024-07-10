@@ -2,6 +2,8 @@ import { Gpio } from "pigpio";
 import { config } from "./loadConfig";
 import { EventEmitter } from "events";
 
+type DoorSwitch = { digitalRead: () => number } & EventEmitter;
+
 class MockDoorSwitch extends EventEmitter {
   private switch = 0;
   constructor() {
@@ -11,12 +13,22 @@ class MockDoorSwitch extends EventEmitter {
       this.emit("alert", this.switch, 0);
     }, 5000);
   }
+
+  digitalRead() {
+    return this.switch;
+  }
 }
 
-const doorSwitchPin: EventEmitter = (() => {
+class DisabledDoorSwitch extends EventEmitter {
+  digitalRead() {
+    return 0;
+  }
+}
+
+const doorSwitchPin: DoorSwitch | null = (() => {
   if (!config.doorSwitchEnabled || config.doorSwitchPin === undefined) {
     console.log("door switch disabled");
-    return new EventEmitter();
+    return new DisabledDoorSwitch();
   }
   try {
     const gpio = new Gpio(config.doorSwitchPin, {

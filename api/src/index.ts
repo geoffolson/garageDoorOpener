@@ -19,18 +19,28 @@ app.post("/", async (req: Request, res: Response) => {
 const server = createServer(app);
 const wss = new WebSocketServer({ server });
 
+const createDoorAjarMessage = (door: number) => {
+  return new Uint8Array([door, config.doorSwitchEnabled ? 1 : 0]);
+};
+
 const connections: WebSocket[] = [];
 wss.on("connection", (ws) => {
   connections.push(ws);
+
+  ws.send(createDoorAjarMessage(doorSwitch.digitalRead()));
+
   ws.on("close", () => {
+    const index = connections.findIndex((_ws) => ws === _ws);
+    connections.splice(index, 1);
+  });
+  ws.on("error", () => {
     const index = connections.findIndex((_ws) => ws === _ws);
     connections.splice(index, 1);
   });
 });
 
-doorSwitch.on("alert", (door: 0 | 1) => {
-  const message = new Uint8Array([door, config.doorSwitchEnabled ? 1 : 0]);
-  connections.forEach((ws) => ws.send(message));
+doorSwitch?.on("alert", (door: 0 | 1) => {
+  connections.forEach((ws) => ws.send(createDoorAjarMessage(door)));
 });
 
 server.listen(port, () => {
