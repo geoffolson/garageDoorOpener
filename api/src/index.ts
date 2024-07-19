@@ -5,6 +5,7 @@ import { WebSocketServer, WebSocket } from "ws";
 import { createServer } from "http";
 import { doorSwitch } from "./doorSwitch";
 import { config } from "./loadConfig";
+import "./blink";
 
 const app = express();
 const port = process.env.NODE_ENV === "production" ? 80 : 3000;
